@@ -1,4 +1,6 @@
 # Supported File Hostings
-(total: 2)
+(total: 4)
 * anifiles.org
+* docs.google.com
+* solidfiles.com
 * zippyshare.com
