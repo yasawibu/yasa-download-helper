@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Yasa Download Helper
 // @namespace    https://github.com/yasawibu/yasa-download-helper
-// @version      0.0.1
+// @version      0.0.2
 // @description  Automate your download task
 // @author       Putu Ardi Dharmayasa
 // @supportURL   https://github.com/yasawibu/yasa-download-helper/issues
@@ -23,6 +23,12 @@
         {
             host: /^(?:\w+\.)?(anifiles\.org)$/,
             path: /^\/[^-/]+$/
+        }, {
+            host: /^(?:\w+\.)?(docs\.google\.com)$/,
+            path: /^\/uc\?id=.+download$/
+        }, {
+            host: /^(?:\w+\.)?(solidfiles\.com)$/,
+            path: /^\/v\/.+$/
         }, {
             host: /^(?:\w+\.)?(zippyshare\.com)$/,
             path: /^\/v\/.+\/file\.html$/
@@ -230,6 +236,8 @@
             xhr.onload = () => {
                 if (xhr.status === 200) {
                     resolve(xhr.responseText);
+                } else if (xhr.status === 302) {
+                    resolve(xhr.responseUrl);
                 } else {
                     reject(xhr.status);
                 }
@@ -306,6 +314,33 @@
         });
     }
 
+    function injectScript(code) {
+        let script = document.createElement('script');
+        script.textContent = code;
+        document.documentElement.appendChild(script);
+    }
+
+    function google() {
+        domReady(() => {
+            window.stop();
+            let url = getUrlFromElement('a#uc-download-link', 'href');
+            openLink(url);
+        });
+    }
+
+    function solidfiles() {
+        domReady(() => {
+            window.stop();
+            const button = selectElement('button.btn.btn-primary');
+            if (button) {
+                button.click();
+            } else {
+                let url = getUrlFromElement('#content p a', 'href');
+                openLink(url);
+            }
+        });
+    }
+
     function zippyshare() {
         domReady(() => {
             window.stop();
@@ -318,6 +353,8 @@
         window.document.title = 'Yasa Download Helper - Wait a moment ...';
         switch (host) {
             case 'anifiles.org': return anifiles();
+            case 'docs.google.com': return google();
+            case 'solidfiles.com': return solidfiles();
             case 'zippyshare.com': return zippyshare();
         }
     }
