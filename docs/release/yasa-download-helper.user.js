@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Yasa Download Helper
 // @namespace    https://github.com/yasawibu/yasa-download-helper
-// @version      0.0.2
+// @version      0.0.3
 // @description  Automate your download task
 // @author       Putu Ardi Dharmayasa
 // @supportURL   https://github.com/yasawibu/yasa-download-helper/issues
@@ -24,7 +24,7 @@
             host: /^(?:\w+\.)?(anifiles\.org)$/,
             path: /^\/[^-/]+$/
         }, {
-            host: /^(?:\w+\.)?(docs\.google\.com)$/,
+            host: /^(?:\w+\.)?((?:docs|drive)\.google\.com)$/,
             path: /^\/uc\?id=.+download$/
         }, {
             host: /^(?:\w+\.)?(solidfiles\.com)$/,
@@ -354,6 +354,7 @@
         switch (host) {
             case 'anifiles.org': return anifiles();
             case 'docs.google.com': return google();
+            case 'drive.google.com': return google();
             case 'solidfiles.com': return solidfiles();
             case 'zippyshare.com': return zippyshare();
         }
