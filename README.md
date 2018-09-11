@@ -10,16 +10,16 @@
 [Yasa Download Helper]: http://bit.ly/yasadownloadhelper
 
 ## Supported File Hostings
-Total: 4 file hostings. See [SUPPORTED-FILE-HOSTINGS.md] for the details.
+Total: 5 file hostings. See [SUPPORTED-FILE-HOSTINGS.md] for the details.
 
 [SUPPORTED-FILE-HOSTINGS.md]: https://github.com/yasawibu/yasa-download-helper/blob/master/SUPPORTED-FILE-HOSTINGS.md
 
 ## Change Log
-**v0.0.1** (7-Sep-2018)
-* Added 2 supported file hostings
+**v0.0.3** (11-Sep-2018)
+* Added 1 supported file hostings
 
-**v0.0.1** (27-Aug-2018)
-* Initial release
+**v0.0.2** (7-Sep-2018)
+* Added 2 supported file hostings
 
 See [CHANGELOG.md] for the details.
 
